@@ -1,0 +1,14 @@
+﻿add new ids to the ULs houseing objective lists
+author function that populates the ULs with the objective links
+discover that the .post function opens a seperate thread and the updateFunction does not have any information to populate with... so I need to nest the function call inside the .post parent function
+*write blog about the difference between python and javascript for loops
+??hide the switch to ranking button
+
+
+Ensure that the ULs are populated with correct objectives
+
+Add dates to rank view links
+Add number of unvoted submissions to rank view links
+??Enable the ranking views
+Enable the achievement view
+Enable the Leaderboards view

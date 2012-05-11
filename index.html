@@ -1,0 +1,224 @@
+<html>
+<head>
+    <title>Scavenger Hunt</title>
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+	<link rel="stylesheet" media="screen" href="scripts/proui.css" />
+    <link rel="stylesheet" media="screen" href="scripts/todolist.css" />
+    <link rel="stylesheet" media="screen" href="scripts/scavengerhunt.css" />
+    <script type="text/javascript" src="scripts/jquery-1.4.2.min.js"></script>
+	<script type="text/javascript" src="scripts/jquery.validate.js"></script>
+    <script type="text/javascript" src="scripts/prowebapps.js"></script>
+	<script type="text/javascript" src="scripts/todolist.js"></script>
+	<script type="text/javascript" src="scripts/scavengerhunt.js"></script>
+	<script type="text/javascript" src="scripts/MD5.js"></script>
+</head>
+<body>
+
+	<div id="main" class="view">
+		<img class="header" src="images/sh_big.gif" />
+		<img class="header" src="images/lthb.gif" />
+		<ul class="buttons">
+			<li><a class="changeview" href="#signIn">Sign In</a></li>
+			<li><a class="changeview" href="#home">Contribute Anonymously</a></li>
+			<!--<li><a class="changeview" href="#createAccount">Create New Account</a></li>-->
+		<p class="new_hunt_timer"></p>
+		</ul>
+	</div>
+
+	<div id="signIn" class="view">
+		<img class="header" src="images/sh_med.gif" />
+		<img class="header" src="images/lthb.gif" />
+	    <h1 class="fancy">Sign In</h1>
+	    <form>
+	    <ul>
+			<li><input type="text" class="required" id="signin_email" placeholder="Email" /></li>
+			<li><input type="password" class="required" id="signin_password" placeholder="Password" /></li>
+			<!-- <li class="naked"><input type="checkbox" name="keepIn" id="keepIn" checked />Keep me signed in</li> -->
+	    </ul>
+	    </form>
+		<ul class="buttons">
+			<li><a class="changeview" href="#home" id="signin_submit">Submit</a></li>
+			<!--<li><a class="changeview" href="#createAccount">Create New Account</a></li>-->
+		</ul>
+		<p class="new_hunt_timer"></p>
+	</div>
+
+	<div id="createAccount" class="view">
+		<img class="header" src="images/sh_med.gif" />
+		<img class="header" src="images/lthb.gif" />
+	    <h1 class="fancy">Create Account</h1>
+	    <form>
+	    <ul>
+			<li><input type="text" class="required" name="username" id="username" placeholder="New Username" value=""/></li>
+			<li><input type="password" class="required" name="password" id="password" placeholder="New Password" value=""/></li>
+			<li><input type="password" class="required" name="confirm" id="confirm" placeholder="Confirm Password" value=""/></li>
+	    </ul>
+	    </form>
+		<ul class="buttons">
+			<li><a class="changeview" href="#home">Sign in with New Account</a></li>
+			<li><a class="changeview" href="#" onClick="parent.location='http://scavengerhunt.wolfford.com'">Edit more account settings online!</a></li>
+		</ul>
+	</div>
+
+	<div id="home" class="view">
+		<img class="header" src="images/sh_med.gif" />
+		<img class="header" src="images/lthb.gif" />
+		<h1 class="fancy">Hunt</h1>
+		<!--<ul class="buttons" style="margin-bottom: 20px">
+			<li><a class="changeview" href="#homeRank">switch to ranking</a></li>
+		</ul>-->
+		<img class="objective" id="thing_image" src="images/things.gif" />
+		<ul class="buttons" id="thing_list">
+			<li class="loading"><a class="changeview" href="#">...Loading...</a></li></ul>
+		<img class="objective" id="action_image" src="images/actions.gif" />
+		<ul class="buttons" id="action_list">
+			<li class="loading"><a class="changeview" href="#">...Loading...</a></li></ul>
+		<img class="objective" id="describe_image" src="images/describe.gif" />
+		<ul class="buttons" id="describe_list">
+			<li class="loading"><a class="changeview" href="#">...Loading...</a></li>
+		</ul>
+		<!--<ul class="buttons" style="margin-top: 40px">
+			<li><a class="changeview" href="#leaders">Leader Boards</a></li> 
+		</ul>-->
+		<p class="new_hunt_timer"></p>
+	</div>
+
+	<div id="hunt" class="view">
+		<img class="header" src="images/sh_med.gif" />
+		<img class="header" src="images/lthb.gif" />
+		<h1 id="hunt_title">Hunting</h1>
+		<p style="text-align: center">Target:</p>
+		<p id="hunt_target"></p>
+		<p style="text-align: center">Image Upload Method:</p>
+		<ul class="buttons">
+			<li><progress id="library_progress_bar" value="0" max="100"></progress></li>
+			<li><div id="library_percentage_calc"></div></li>
+			<li><input type="file" id="library_input" /></li>
+			<li><a class="changeview" id="library_submit" href="#hunt">Library / Storage</a></li>
+			<li><a class="changeview" href="#camera">Camera</a></li>
+		</ul>
+		<p class="new_hunt_timer"></p>
+	</div>
+
+	<div id="uploadComplete" class="view">
+		<img class="header" src="images/sh_med.gif" />
+		<img class="header" src="images/lthb.gif" />
+		<h1>Upload Complete!</h1>
+		<img id="uploaded_image" src="images/loading.gif" />
+		<ul class="buttons">
+			<li><a class="changeview" href="#home">Hunt for something else?</a></li>
+			<li><a class="changeview" href="#hunt">Upload another image for this hunt?</a></li>
+		</ul>
+		<p class="new_hunt_timer"></p>
+	</div>
+
+	<div id="rank" class="view">
+		<img class="header" src="images/sh_med.gif" />
+		<img class="header" src="images/lthb.gif" />
+		<h1>Ranking Actions</h1>
+		<p style="text-align: center"><b>"Eating"</b></p>
+		<div style="min-width: 480px">
+			<a class="changeview" href="#rank2"><img class="lArrow" src="images/lArrow.gif" /></a>
+			<a class="changeview" href="#rank2"><img class="rArrow" src="images/rArrow.gif" /></a>
+			<img class="choice" src="images/eating.jpg" />
+			<div style="clear: both"></div>
+		</div>
+		<ul class="buttons">
+			<li><a class="changeview" href="#rank2">Bad</a></li>
+			<li><a class="changeview" href="#rank2">Good</a></li>
+			<li><a class="changeview" href="#rank2">Perfect</a></li>
+		</ul>
+	</div>
+
+	<div id="rank2" class="view">
+		<img class="header" src="images/sh_med.gif" />
+		<img class="header" src="images/lthb.gif" />
+		<h1>Ranking Actions</h1>
+		<p style="text-align: center"><b>"Running"</b></p>
+		<div style="min-width: 480px">
+			<a class="changeview" href="#rank"><img class="lArrow" src="images/lArrow.gif" /></a>
+			<a class="changeview" href="#rank"><img class="rArrow" src="images/rArrow.gif" /></a>
+			<img class="choice" src="images/running.jpg" />
+			<div style="clear: left"></div>
+		</div>
+		<ul class="buttons">
+			<li><a class="changeview" href="#rank">Bad</a></li>
+			<li><a class="changeview" href="#rank">Good</a></li>
+			<li><a class="changeview" href="#rank">Perfect</a></li>
+		</ul>
+	</div>
+
+	<div id="library" class="view">
+		<img class="header" src="images/sh_med.gif" />
+		<img class="header" src="images/lthb.gif" />
+		<h1>Library</h1>
+		<div style="min-width: 480px">
+			<a class="changeview" href="#library2"><img class="lArrow" src="images/lArrow.gif" /></a>
+			<a class="changeview" href="#library2"><img class="rArrow" src="images/rArrow.gif" /></a>
+			<img class="choice" src="images/bananas.jpg" />
+			<div style="clear: both"></div>
+		</div>
+		<ul class="buttons">
+			<li><a class="changeview" href="#hunt2">Submit</a></li>
+		</ul>
+		<p class="new_hunt_timer"></p>
+	</div>
+
+	<div id="library2" class="view">
+		<img class="header" src="images/sh_med.gif" />
+		<img class="header" src="images/lthb.gif" />
+		<h1>Library</h1>
+		<div style="min-width: 480px">
+			<a class="changeview" href="#library"><img class="lArrow" src="images/lArrow.gif" /></a>
+			<a class="changeview" href="#library"><img class="rArrow" src="images/rArrow.gif" /></a>
+			<img class="choice" src="images/bananas2.jpg" />
+			<div style="clear: left"></div>
+		</div>
+		<ul class="buttons">
+			<li><a class="changeview" href="#hunt2">Submit</a></li>
+		</ul>
+	</div>
+
+	<div id="camera" class="view">
+		<img class="header" src="images/sh_med.gif" />
+		<img class="header" src="images/lthb.gif" />
+		<h1>Account Information</h1>
+		<p class="apology">...coming soon!</p>
+	</div>
+
+	<div id="leaders" class="view">
+		<img class="header" src="images/sh_med.gif" />
+		<img class="header" src="images/lthb.gif" />
+		<h1>Leader Boards</h1>
+		<p class="apology">...coming soon!</p>
+	</div>
+
+	<div id="account" class="view">
+		<img class="header" src="images/sh_med.gif" />
+		<img class="header" src="images/lthb.gif" />
+		<h1>Account Information</h1>
+		<p class="apology">...coming soon!</p>
+	</div>
+
+	<!--<div id="about" class="view">
+		<img class="header" src="images/sh_med.gif" />
+		<img class="header" src="images/lthb.gif" />
+		<h1>About Scavenger Hunt</h1>
+		<ul class="buttons">
+			Thank you for helping us out!
+			We hope that you are also having fun doing so, so please feel free to contact us with any questions or concerns on our website at:
+			<li><a class="changeview" href="#" onClick="parent.location='http://scavengerhunt.wolfford.com'">Edit more account settings online!</a></li>
+			or by email:
+			<li><a class="changeview" href="#" onClick="parent.location='mail-to:bryan@wolfford.com'">bryan@wolfford.com</a></li>
+			<li><a class="changeview" href="#createAccount">Create New Account</a></li>
+		</ul>
+	</div>-->
+
+	<ul id="menu2">
+		<li><a id="accountLink" class="changeview" href="#account"></a></li>
+	</ul>
+
+	<ul id="menu">
+	</ul>
+	</body>
+</html>

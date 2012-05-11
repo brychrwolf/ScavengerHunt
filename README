@@ -1,0 +1,20 @@
+"Let the hunt begin!" ﻿This is the Scavenger Hunt Project for the Hawai'i 
+Pacific University - Spring 2012 course CSCI4702 with Dr. Samuel Joseph 
+
+You the project expects to be run in an environment with MySQL, PHP, FTP
+servers running. One additional file is also required, 'scritps/connection.php'
+which needs to supply the following information:
+
+
+// sample connection.php
+$dbusername = "your_mysql_username";
+$dbpassword = "your_mysql_password";
+$dbname = "your_mysql_database_name";
+
+$ftpAddress = "your_ftp_address_(ie_localhost)";
+$ftpUsername = "your_ftp_username";
+$ftpPassword = "your_ftp_username";
+
+$dbh = mysql_connect ("localhost", $dbusername, $dbpassword) or die ("Could not connect to server:".mysql_error());
+mysql_select_db($dbname, $dbh) or die("Could not open databsase:".mysql_error());
+// end sample
