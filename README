@@ -5,7 +5,6 @@ You the project expects to be run in an environment with MySQL, PHP, FTP
 servers running. One additional file is also required, 'scritps/connection.php'
 which needs to supply the following information:
 
-
 // sample connection.php
 $dbusername = "your_mysql_username";
 $dbpassword = "your_mysql_password";
